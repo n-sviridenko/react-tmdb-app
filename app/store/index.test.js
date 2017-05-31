@@ -3,7 +3,7 @@
  */
 
 import browserHistory from 'react-router/lib/browserHistory';
-import configureStore from './store';
+import configureStore from './index';
 
 describe('configureStore', () => {
   let store;

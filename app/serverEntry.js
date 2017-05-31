@@ -21,7 +21,7 @@ import createRoutes from 'routes';
 
 import HtmlDocument from 'components/HtmlDocument';
 import AppRoot from 'containers/AppRoot';
-import { changeLocale } from 'containers/LanguageProvider/actions';
+import { setLocale } from 'store/actions/global';
 
 import syncHistoryWithStore from 'setup/syncHistoryWithStore';
 import monitorSagas from 'utils/monitorSagas';
@@ -67,7 +67,7 @@ async function renderHtmlDocument({ store, renderProps, sagasDone, assets, webpa
   const doc = renderToStaticMarkup(
     <HtmlDocument
       appMarkup={appMarkup}
-      lang={state.language.locale}
+      lang={state.global.locale}
       state={state}
       head={Helmet.rewind()}
       assets={assets}
@@ -92,7 +92,7 @@ function renderAppToStringAtLocation(url, { webpackDllNames = [], assets, lang, 
 
   const sagasDone = monitorSagas(store);
 
-  store.dispatch(changeLocale(lang));
+  store.dispatch(setLocale(lang));
 
   match({ routes, location: url }, (error, redirectLocation, renderProps) => {
     if (error) {

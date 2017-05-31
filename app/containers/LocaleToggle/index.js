@@ -6,40 +6,40 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
+import { createStructuredSelector } from 'reselect';
 
+import { setLocale } from 'store/actions/global';
+import { getLocale } from 'store/reducers/global';
 import Toggle from 'components/Toggle';
 import Wrapper from './Wrapper';
 import messages from './messages';
 import { appLocales } from '../../i18n';
-import { changeLocale } from '../LanguageProvider/actions';
-import { makeSelectLocale } from '../LanguageProvider/selectors';
 
-export class LocaleToggle extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export class LocaleToggle extends React.PureComponent {
+  onLocaleToggle = (event) => {
+    this.props.setLocale(event.target.value);
+  };
+
   render() {
     return (
       <Wrapper>
-        <Toggle value={this.props.locale} values={appLocales} messages={messages} onToggle={this.props.onLocaleToggle} />
+        <Toggle value={this.props.locale} values={appLocales} messages={messages} onToggle={this.onLocaleToggle} />
       </Wrapper>
     );
   }
 }
 
 LocaleToggle.propTypes = {
-  onLocaleToggle: React.PropTypes.func,
+  setLocale: React.PropTypes.func,
   locale: React.PropTypes.string,
 };
 
-const mapStateToProps = createSelector(
-  makeSelectLocale(),
-  (locale) => ({ locale })
-);
+const mapStateToProps = createStructuredSelector({
+  locale: getLocale,
+});
 
-export function mapDispatchToProps(dispatch) {
-  return {
-    onLocaleToggle: (evt) => dispatch(changeLocale(evt.target.value)),
-    dispatch,
-  };
-}
+const mapDispatchToProps = {
+  setLocale,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocaleToggle);
