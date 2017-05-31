@@ -57,8 +57,8 @@ export default function HtmlDocument({ lang, head, css, appMarkup, state, assets
         {/* our app code */}
         <script type="text/javascript" src={assets.main.js}></script>
 
-        {/* see app/setup/openSansObserver.js */}
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" />
+        {/* for material-ui */}
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
       </body>
     </html>
   );

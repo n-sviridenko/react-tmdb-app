@@ -14,10 +14,7 @@ import { createMemoryHistory, match, RouterContext } from 'react-router';
 import { END } from 'redux-saga';
 import Helmet from 'react-helmet';
 import styleSheet from 'styled-components/lib/models/StyleSheet';
-
-// Global styles should be injected before any other scoped style, so make sure
-// this file is imported before any styled component.
-import 'global-styles';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import createStore from 'store';
 import createRoutes from 'routes';
@@ -31,17 +28,24 @@ import monitorSagas from 'utils/monitorSagas';
 
 import { appLocales, translationMessages } from './i18n';
 
-function renderAppToString(store, renderProps) {
+// Needed for onTouchTap
+// http://stackoverflow.com/a/34015469/988941
+injectTapEventPlugin();
+
+function renderAppToString(store, renderProps, muiOptions) {
   return renderToString(
-    <AppRoot store={store} messages={translationMessages}>
+    <AppRoot store={store} messages={translationMessages} muiOptions={muiOptions}>
       <RouterContext {...renderProps} />
     </AppRoot>
   );
 }
 
-async function renderHtmlDocument({ store, renderProps, sagasDone, assets, webpackDllNames }) {
+async function renderHtmlDocument({ store, renderProps, sagasDone, assets, webpackDllNames, userAgent }) {
+  // options for material-ui
+  const muiOptions = { userAgent };
+
   // 1st render phase - triggers the sagas
-  renderAppToString(store, renderProps);
+  renderAppToString(store, renderProps, muiOptions);
 
   // send signal to sagas that we're done
   store.dispatch(END);
@@ -53,7 +57,7 @@ async function renderHtmlDocument({ store, renderProps, sagasDone, assets, webpa
   const state = store.getState().toJS();
 
   // 2nd render phase - the sagas triggered in the first phase are resolved by now
-  const appMarkup = renderAppToString(store, renderProps);
+  const appMarkup = renderAppToString(store, renderProps, muiOptions);
 
   // capture the generated css
   const css = styleSheet.injected
@@ -78,7 +82,7 @@ function is404(routes) {
   return routes.some((r) => r.name === 'notfound');
 }
 
-function renderAppToStringAtLocation(url, { webpackDllNames = [], assets, lang }, callback) {
+function renderAppToStringAtLocation(url, { webpackDllNames = [], assets, lang, userAgent }, callback) {
   const memHistory = createMemoryHistory(url);
   const store = createStore({}, memHistory);
 
@@ -96,7 +100,7 @@ function renderAppToStringAtLocation(url, { webpackDllNames = [], assets, lang }
     } else if (redirectLocation) {
       callback({ redirectLocation: redirectLocation.pathname + redirectLocation.search });
     } else if (renderProps) {
-      renderHtmlDocument({ store, renderProps, sagasDone, assets, webpackDllNames })
+      renderHtmlDocument({ store, renderProps, sagasDone, assets, webpackDllNames, userAgent })
         .then((html) => {
           const notFound = is404(renderProps.routes);
           callback({ html, notFound });

@@ -23,6 +23,7 @@ module.exports = function handleSSR(req, res) {
     assets,
     webpackDllNames: extractWebpackDllNamesFromPackage(),
     lang: req.acceptsLanguages(appLocales),
+    userAgent: req.headers['user-agent'],
   };
 
   renderAppToStringAtLocation(req.url, options, (response) => {

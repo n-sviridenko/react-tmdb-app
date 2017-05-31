@@ -8,6 +8,7 @@
 // Needed for redux-saga es6 generator support
 import 'babel-polyfill';
 import browserHistory from 'react-router/lib/browserHistory';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Load the favicon, the manifest.json file and the .htaccess file
 /* eslint-disable import/no-webpack-loader-syntax */
@@ -30,12 +31,7 @@ import 'file-loader?name=[name].[ext]!./.htaccess'; // eslint-disable-line impor
 // Import CSS reset
 import 'sanitize.css/sanitize.css';
 
-// Global styles should be injected before any other scoped style, so make sure
-// this file is imported before any styled component.
-import 'global-styles';
-
 // Import all the third party stuff
-import './setup/openSansObserver';
 import syncHistoryWithStore from './setup/syncHistoryWithStore';
 import ensureIntlSupport from './setup/ensureIntlSupport';
 import configureStore from './store';
@@ -43,6 +39,10 @@ import renderInBrowser from './renderInBrowser';
 import createRoutes from './routes';
 // Import i18n messages
 import { translationMessages as messages } from './i18n';
+
+// Needed for onTouchTap
+// http://stackoverflow.com/a/34015469/988941
+injectTapEventPlugin();
 
 // The initial state of the app can be set on the server
 const initialState = window.APP_STATE || {};
