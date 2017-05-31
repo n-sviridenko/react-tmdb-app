@@ -15,59 +15,14 @@ const loadModule = (cb) => (componentModule) => {
 
 function createChildRoutes(store) {
   // create reusable async injectors using getAsyncInjectors factory
+  // eslint-disable-next-line no-unused-vars
   const { injectReducer, injectSagas } = getAsyncInjectors(store);
 
   return [
     {
-      path: '/',
-      getComponent(nextState, cb) {
-        const importModules = Promise.all([
-          import('containers/HomePage/reducer'),
-          import('containers/HomePage/sagas'),
-          import('containers/HomePage'),
-        ]);
-
-        const renderRoute = loadModule(cb);
-
-        importModules.then(([reducer, sagas, component]) => {
-          injectReducer('home', reducer.default);
-          injectSagas(sagas.default);
-
-          renderRoute(component);
-        });
-
-        importModules.catch(errorLoading);
-      },
-    }, {
-      path: '/features',
-      getComponent(nextState, cb) {
-        import('containers/FeaturePage')
-          .then(loadModule(cb))
-          .catch(errorLoading);
-      },
-    }, {
-      path: '/users/:username',
-      name: 'user',
-      getComponent(nextState, cb) {
-        const importModules = Promise.all([
-          System.import('containers/UserPage/sagas'),
-          System.import('containers/UserPage'),
-        ]);
-
-        const renderRoute = loadModule(cb);
-
-        importModules.then(([sagas, component]) => {
-          injectSagas(sagas.default);
-
-          renderRoute(component);
-        });
-
-        importModules.catch(errorLoading);
-      },
-    }, {
       path: '*',
       getComponent(nextState, cb) {
-        import('containers/NotFoundPage')
+        import('pages/NotFound')
           .then(loadModule(cb))
           .catch(errorLoading);
       },
