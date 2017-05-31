@@ -28,8 +28,8 @@ import '!file-loader?name=[name].[ext]!./manifest.json';
 import 'file-loader?name=[name].[ext]!./.htaccess'; // eslint-disable-line import/extensions
 /* eslint-enable import/no-webpack-loader-syntax */
 
-// Import CSS reset
-import 'sanitize.css/sanitize.css';
+// Import Bootstrap
+import './styles/bootstrap.scss';
 
 // Import all the third party stuff
 import syncHistoryWithStore from './setup/syncHistoryWithStore';

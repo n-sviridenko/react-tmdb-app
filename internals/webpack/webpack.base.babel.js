@@ -21,6 +21,11 @@ const vendorCSSLoaders = extractVendorCSSPlugin.extract({
   use: 'css-loader',
 });
 
+const stylesSassLoaders = extractVendorCSSPlugin.extract({
+  fallback: 'style-loader',
+  use: ['css-loader', 'sass-loader'],
+});
+
 module.exports = (options) => ({
   entry: options.entry,
   output: Object.assign({ // Compile into js/build.js
@@ -50,6 +55,12 @@ module.exports = (options) => ({
         test: /\.css$/,
         include: /node_modules/,
         use: vendorCSSLoaders,
+      },
+      {
+        // Transform 3rd party css into an external stylesheet (vendor.[contenthash].css)
+        test: /\.scss$/,
+        include: /app\/styles/,
+        use: stylesSassLoaders,
       },
       {
         test: /\.(eot|svg|otf|ttf|woff|woff2)$/,
