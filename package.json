@@ -316,6 +316,7 @@
     "plop": "1.7.4",
     "pre-commit": "1.2.2",
     "react-addons-test-utils": "15.4.2",
+    "redux-mock-store": "^1.2.3",
     "rimraf": "2.5.4",
     "sass-loader": "^6.0.5",
     "server-destroy": "1.0.1",

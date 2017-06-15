@@ -1,5 +1,6 @@
 {
-  "boilerplate.containers.LocaleToggle.de": "de",
-  "boilerplate.containers.LocaleToggle.en": "en",
-  "boilerplate.pages.NotFound.header": "Page not found."
+  "app.containers.locale_toggle.locale_toggle.en": "English",
+  "app.containers.locale_toggle.locale_toggle.locale": "Language",
+  "app.containers.locale_toggle.locale_toggle.de": "German",
+  "app.pages.not_found.not_found.header": "Page not found."
 }

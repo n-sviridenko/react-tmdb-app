@@ -19,8 +19,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import createStore from 'store';
 import createRoutes from 'routes';
 
-import HtmlDocument from 'components/HtmlDocument';
-import AppRoot from 'containers/AppRoot';
+import { AppRoot, HtmlDocument } from 'components/Core';
 import { setLocale } from 'store/actions/global';
 
 import syncHistoryWithStore from 'setup/syncHistoryWithStore';
@@ -28,9 +27,12 @@ import monitorSagas from 'utils/monitorSagas';
 
 import { appLocales, translationMessages } from './i18n';
 
-// Needed for onTouchTap
-// http://stackoverflow.com/a/34015469/988941
-injectTapEventPlugin();
+// it's already injected in case if the current environment is "test"
+if (process.env.NODE_ENV !== 'test') {
+  // Needed for onTouchTap
+  // http://stackoverflow.com/a/34015469/988941
+  injectTapEventPlugin();
+}
 
 function renderAppToString(store, renderProps, muiOptions) {
   return renderToString(

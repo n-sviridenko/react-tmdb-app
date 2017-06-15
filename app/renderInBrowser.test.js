@@ -5,7 +5,7 @@ jest.mock('react-router/lib/match');
 import ReactDOM from 'react-dom';
 import match from 'react-router/lib/match';
 
-import AppRoot from 'containers/AppRoot';
+import { AppRoot } from 'components/Core';
 
 import renderInBrowser from './renderInBrowser';
 

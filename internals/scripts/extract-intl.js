@@ -15,7 +15,7 @@ const presets = pkg.babel.presets;
 const plugins = pkg.babel.plugins || [];
 
 const i18n = require('../../app/i18n');
-import { DEFAULT_LOCALE } from '../../app/containers/App/constants';
+import { defaultLocale } from '../../app/config';
 
 require('shelljs/global');
 
@@ -104,7 +104,7 @@ const extractFromFile = async (fileName) => {
       for (const locale of locales) {
         const oldLocaleMapping = oldLocaleMappings[locale][message.id];
         // Merge old translations into the babel extracted instances where react-intl is used
-        const newMsg = ( locale === DEFAULT_LOCALE) ? message.defaultMessage : '';
+        const newMsg = (locale === defaultLocale) ? message.defaultMessage : '';
         localeMappings[locale][message.id] = (oldLocaleMapping)
           ? oldLocaleMapping
           : newMsg;

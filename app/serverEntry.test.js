@@ -4,13 +4,13 @@ jest.mock('react-router');
 jest.mock('styled-components/lib/models/StyleSheet');
 jest.mock('react-helmet');
 jest.mock('setup/syncHistoryWithStore');
-jest.mock('components/HtmlDocument');
+jest.mock('components/Core/HtmlDocument');
 
 import { match } from 'react-router';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import Helmet from 'react-helmet';
 
-import AppRoot from 'containers/AppRoot';
+import { AppRoot } from 'components/Core';
 
 import styleSheet from 'styled-components/lib/models/StyleSheet';
 

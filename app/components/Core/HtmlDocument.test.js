@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 
-import HtmlDocument from './index';
+import HtmlDocument from './HtmlDocument';
 
 describe('<HtmlDocument />', () => {
   it('should render a valid html document', () => {
