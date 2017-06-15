@@ -6,7 +6,9 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
+
 import createReducer from './createReducer';
+import { startSagas, cancelSagas } from './sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -38,6 +40,8 @@ export default function configureStore(initialState = {}, history) {
     composeEnhancers(...enhancers)
   );
 
+  startSagas(sagaMiddleware);
+
   // Extensions
   store.runSaga = sagaMiddleware.run;
   store.asyncReducers = {}; // Async reducer registry
@@ -51,6 +55,14 @@ export default function configureStore(initialState = {}, history) {
         const nextReducers = createReducers(store.asyncReducers);
 
         store.replaceReducer(nextReducers);
+      });
+    });
+    // take attention on https://github.com/yelouafi/redux-saga/issues/22#issuecomment-218737951
+    module.hot.accept('./sagas', () => {
+      cancelSagas(store);
+
+      import('./sagas').then((sagasModule) => {
+        sagasModule.startSagas(sagaMiddleware);
       });
     });
   }
