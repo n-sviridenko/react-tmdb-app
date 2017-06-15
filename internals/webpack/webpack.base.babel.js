@@ -4,12 +4,15 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const mapValues = require('lodash/mapValues');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const AssetsPlugin = require('assets-webpack-plugin');
 const assetsPluginInstance = new AssetsPlugin({
   path: path.join(process.cwd(), 'server', 'middlewares'),
   filename: 'generated.assets.json',
 });
+
+const environment = require('../../env.json');
 
 const extractVendorCSSPlugin = new ExtractTextPlugin('vendor.[contenthash].css');
 const imageWebpackQuery = require('./imageWebpackQuery');
@@ -105,9 +108,10 @@ module.exports = (options) => ({
     // inside your code for any environment checks; UglifyJS will automatically
     // drop any unreachable code.
     new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-      },
+      'process.env': mapValues(
+        Object.assign({}, environment, { NODE_ENV: process.env.NODE_ENV }),
+        (value) => JSON.stringify(value)
+      ),
     }),
     new webpack.NamedModulesPlugin(),
     extractVendorCSSPlugin,
