@@ -1,7 +1,10 @@
 import { fork, take, cancel } from 'redux-saga/effects';
 import { createAction } from 'redux-actions';
 
+import movies from './movies';
+
 const sagas = [
+  ...movies,
 ];
 
 const HMR_CANCEL = 'app/sagas/HMR_CANCEL';
