@@ -34,6 +34,7 @@ import './styles/bootstrap.scss';
 // Import all the third party stuff
 import syncHistoryWithStore from './setup/syncHistoryWithStore';
 import ensureIntlSupport from './setup/ensureIntlSupport';
+import configureTmdbClient from './setup/configureTmdbClient';
 import configureStore from './store';
 import renderInBrowser from './renderInBrowser';
 import createRoutes from './routes';
@@ -63,6 +64,8 @@ function render() {
 
 ensureIntlSupport()
   .then(render);
+
+configureTmdbClient();
 
 // Hot reloadable translation json files
 if (module.hot) {

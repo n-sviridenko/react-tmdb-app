@@ -1,0 +1,31 @@
+exports[`sendRequest saga should return an immutable response 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "CALL": Object {
+    "args": Array [
+      "discover.getMovies",
+      Object {
+        "foo": "bar",
+      },
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+}
+`;
+
+exports[`sendRequest saga should return normalize response if schema is specified 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "CALL": Object {
+    "args": Array [
+      "discover.getMovie",
+      Object {
+        "id": 1,
+      },
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+}
+`;

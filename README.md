@@ -32,3 +32,8 @@ More documentation
 
 It's based on [react-boilerplate](https://github.com/react-boilerplate/react-boilerplate).
 So you can find it there.
+
+Special thanks
+--------------
+
+Thanks to [themoviedb.org](https://www.themoviedb.org/) for providing the API.
