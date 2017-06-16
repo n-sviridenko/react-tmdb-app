@@ -21,8 +21,10 @@ import createRoutes from 'routes';
 
 import { AppRoot, HtmlDocument } from 'components/Core';
 import { setLocale } from 'store/actions/global';
+import { startSagas } from 'store/sagas';
 
 import syncHistoryWithStore from 'setup/syncHistoryWithStore';
+import configureTmdbClient from 'setup/configureTmdbClient';
 import monitorSagas from 'utils/monitorSagas';
 
 import { appLocales, translationMessages } from './i18n';
@@ -90,9 +92,13 @@ function renderAppToStringAtLocation(url, { webpackDllNames = [], assets, lang, 
 
   syncHistoryWithStore(memHistory, store);
 
+  configureTmdbClient();
+
   const routes = createRoutes(store);
 
   const sagasDone = monitorSagas(store);
+
+  startSagas(store);
 
   store.dispatch(setLocale(lang));
 

@@ -1,6 +1,9 @@
 /* eslint-disable global-require */
 require('isomorphic-fetch');
 
+// only to make themoviedb-javascript-library compatible with SSR
+global.XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
+
 const assets = require('./generated.assets.json'); // eslint-disable-line import/no-unresolved
 
 const serverEntry = require('./generated.serverEntry'); // eslint-disable-line import/no-unresolved

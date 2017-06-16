@@ -9,17 +9,20 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
+import { Copyright } from 'components/Common';
+
 function App(props) {
   return (
     <div>
       <Helmet
-        titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="React.js Boilerplate"
+        titleTemplate="%s - Movie search app"
+        defaultTitle="Movie search app"
         meta={[
-          { name: 'description', content: 'A React.js Boilerplate application' },
+          { name: 'description', content: 'Movie search app' },
         ]}
       />
       {React.Children.toArray(props.children)}
+      <Copyright />
     </div>
   );
 }

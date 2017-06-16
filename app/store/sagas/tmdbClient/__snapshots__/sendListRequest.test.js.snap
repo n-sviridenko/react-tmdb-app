@@ -1,0 +1,19 @@
+exports[`tmdbClient sendListRequest saga should dispatch call sendRequest and normalize the response 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "CALL": Object {
+    "args": Array [
+      "foo.bar",
+      Object {
+        "results": ArraySchema {
+          "schema": Object {},
+        },
+      },
+      "a",
+      "b",
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+}
+`;

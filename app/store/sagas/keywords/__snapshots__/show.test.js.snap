@@ -1,0 +1,47 @@
+exports[`keywords show saga should dispatch the showFailure if request was failed 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "CALL": Object {
+    "args": Array [
+      "keywords.getById",
+      EntitySchema {
+        "_getId": [Function],
+        "_idAttribute": "id",
+        "_key": "keyword",
+        "_mergeStrategy": [Function],
+        "_processStrategy": [Function],
+        "schema": Object {},
+      },
+      Object {
+        "id": 1,
+      },
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+}
+`;
+
+exports[`keywords show saga should dispatch the showSuccess if request was succeeded 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "CALL": Object {
+    "args": Array [
+      "keywords.getById",
+      EntitySchema {
+        "_getId": [Function],
+        "_idAttribute": "id",
+        "_key": "keyword",
+        "_mergeStrategy": [Function],
+        "_processStrategy": [Function],
+        "schema": Object {},
+      },
+      Object {
+        "id": 1,
+      },
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+}
+`;

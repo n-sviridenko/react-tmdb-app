@@ -1,4 +1,4 @@
-exports[`sendRequest saga should return an immutable response 1`] = `
+exports[`tmdbClient sendRequest saga should return an immutable response 1`] = `
 Object {
   "@@redux-saga/IO": true,
   "CALL": Object {
@@ -14,7 +14,7 @@ Object {
 }
 `;
 
-exports[`sendRequest saga should return normalize response if schema is specified 1`] = `
+exports[`tmdbClient sendRequest saga should return normalize response if schema is specified 1`] = `
 Object {
   "@@redux-saga/IO": true,
   "CALL": Object {

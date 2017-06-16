@@ -20,6 +20,20 @@ function createChildRoutes(store) {
 
   return [
     {
+      path: '/',
+      indexRoute: {
+        onEnter: (location, replace) => replace('/movies/discover'),
+      },
+    },
+    {
+      path: '/movies/discover',
+      getComponent(nextState, cb) {
+        import('pages/Movie/Discover')
+          .then(loadModule(cb))
+          .catch(errorLoading);
+      },
+    },
+    {
       path: '*',
       getComponent(nextState, cb) {
         import('pages/NotFound')

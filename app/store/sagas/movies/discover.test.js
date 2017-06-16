@@ -9,16 +9,15 @@ describe('movies discover saga', () => {
   let task;
 
   beforeEach(() => {
-    task = discover();
+    task = discover({ payload: fromJS({}) });
 
     const callDescriptor = task.next().value;
     expect(callDescriptor).toMatchSnapshot();
   });
 
   it('should dispatch the discoverSuccess if request was succeeded', () => {
-    const res = fromJS({ total_results: 10, total_pages: 2, page: 1, results: [] });
     const list = fromJS({ count: 10, pageCount: 2, page: 1, items: [] });
-    const putDescriptor = task.next(res).value;
+    const putDescriptor = task.next(list).value;
     expect(putDescriptor).toEqual(put(actions.discoverSuccess(list)));
   });
 

@@ -1,10 +1,13 @@
 // Important modules this config uses
 const path = require('path');
 const webpack = require('webpack');
+const mapValues = require('lodash/mapValues');
 const nodeExternals = require('webpack-node-externals');
 const imageWebpackQuery = require('./imageWebpackQuery');
 
 const outputPath = path.join(process.cwd(), 'server', 'middlewares');
+
+const environment = require('../../env.json');
 
 module.exports = {
   name: 'server',
@@ -57,9 +60,10 @@ module.exports = {
     // inside your code for any environment checks; UglifyJS will automatically
     // drop any unreachable code.
     new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-      },
+      'process.env': mapValues(
+        Object.assign({}, environment, { NODE_ENV: process.env.NODE_ENV }),
+        (value) => JSON.stringify(value)
+      ),
     }),
   ],
   resolve: {

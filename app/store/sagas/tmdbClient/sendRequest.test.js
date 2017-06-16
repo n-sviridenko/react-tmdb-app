@@ -7,7 +7,7 @@ import { sendRequest as baseSendRequest } from 'utils/tmdbClient';
 import { merge } from 'store/actions/entities';
 import sendRequest from './sendRequest';
 
-describe('sendRequest saga', () => {
+describe('tmdbClient sendRequest saga', () => {
   it('should send a request', () => {
     const sendRequestTask = sendRequest('discover.getMovies', null, { foo: 'bar' });
     const callEffect = call(baseSendRequest, 'discover.getMovies', { foo: 'bar' });

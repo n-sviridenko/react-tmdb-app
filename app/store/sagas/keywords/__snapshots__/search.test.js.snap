@@ -1,0 +1,47 @@
+exports[`keywords search saga should dispatch the searchFailure if request was failed 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "CALL": Object {
+    "args": Array [
+      "search.getKeyword",
+      EntitySchema {
+        "_getId": [Function],
+        "_idAttribute": "id",
+        "_key": "keyword",
+        "_mergeStrategy": [Function],
+        "_processStrategy": [Function],
+        "schema": Object {},
+      },
+      Object {
+        "query": "Apple",
+      },
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+}
+`;
+
+exports[`keywords search saga should dispatch the searchSuccess if request was succeeded 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "CALL": Object {
+    "args": Array [
+      "search.getKeyword",
+      EntitySchema {
+        "_getId": [Function],
+        "_idAttribute": "id",
+        "_key": "keyword",
+        "_mergeStrategy": [Function],
+        "_processStrategy": [Function],
+        "schema": Object {},
+      },
+      Object {
+        "query": "Apple",
+      },
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+}
+`;

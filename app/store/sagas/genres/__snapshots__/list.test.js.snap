@@ -1,0 +1,51 @@
+exports[`genres list saga should dispatch the listFailure if request was failed 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "CALL": Object {
+    "args": Array [
+      "genres.getList",
+      Object {
+        "genres": ArraySchema {
+          "schema": EntitySchema {
+            "_getId": [Function],
+            "_idAttribute": "id",
+            "_key": "genre",
+            "_mergeStrategy": [Function],
+            "_processStrategy": [Function],
+            "schema": Object {},
+          },
+        },
+      },
+      Object {},
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+}
+`;
+
+exports[`genres list saga should dispatch the listSuccess if request was succeeded 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "CALL": Object {
+    "args": Array [
+      "genres.getList",
+      Object {
+        "genres": ArraySchema {
+          "schema": EntitySchema {
+            "_getId": [Function],
+            "_idAttribute": "id",
+            "_key": "genre",
+            "_mergeStrategy": [Function],
+            "_processStrategy": [Function],
+            "schema": Object {},
+          },
+        },
+      },
+      Object {},
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+}
+`;

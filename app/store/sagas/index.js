@@ -1,9 +1,13 @@
 import { fork, take, cancel } from 'redux-saga/effects';
 import { createAction } from 'redux-actions';
 
+import genres from './genres';
+import keywords from './keywords';
 import movies from './movies';
 
 const sagas = [
+  ...genres,
+  ...keywords,
   ...movies,
 ];
 
@@ -24,8 +28,8 @@ function createAbortableSaga(saga) {
   return saga;
 }
 
-export function startSagas(sagaMiddleware) {
-  sagas.map(createAbortableSaga).forEach((saga) => sagaMiddleware.run(saga));
+export function startSagas(store) {
+  sagas.map(createAbortableSaga).forEach((saga) => store.runSaga(saga));
 }
 
 export function cancelSagas(store) {

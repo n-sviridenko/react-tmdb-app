@@ -4,17 +4,13 @@ Object {
   "CALL": Object {
     "args": Array [
       "discover.getMovies",
-      Object {
-        "results": ArraySchema {
-          "schema": EntitySchema {
-            "_getId": [Function],
-            "_idAttribute": "id",
-            "_key": "movie",
-            "_mergeStrategy": [Function],
-            "_processStrategy": [Function],
-            "schema": Object {},
-          },
-        },
+      EntitySchema {
+        "_getId": [Function],
+        "_idAttribute": "id",
+        "_key": "movie",
+        "_mergeStrategy": [Function],
+        "_processStrategy": [Function],
+        "schema": Object {},
       },
       Object {},
     ],
@@ -30,17 +26,13 @@ Object {
   "CALL": Object {
     "args": Array [
       "discover.getMovies",
-      Object {
-        "results": ArraySchema {
-          "schema": EntitySchema {
-            "_getId": [Function],
-            "_idAttribute": "id",
-            "_key": "movie",
-            "_mergeStrategy": [Function],
-            "_processStrategy": [Function],
-            "schema": Object {},
-          },
-        },
+      EntitySchema {
+        "_getId": [Function],
+        "_idAttribute": "id",
+        "_key": "movie",
+        "_mergeStrategy": [Function],
+        "_processStrategy": [Function],
+        "schema": Object {},
       },
       Object {},
     ],

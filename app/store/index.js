@@ -40,11 +40,14 @@ export default function configureStore(initialState = {}, history) {
     composeEnhancers(...enhancers)
   );
 
-  startSagas(sagaMiddleware);
-
   // Extensions
   store.runSaga = sagaMiddleware.run;
   store.asyncReducers = {}; // Async reducer registry
+
+  // do not start sagas in case of SSR
+  if (typeof window === 'object') {
+    startSagas(store);
+  }
 
   // Make reducers hot reloadable, see http://mxs.is/googmo
   /* istanbul ignore next */
@@ -62,7 +65,7 @@ export default function configureStore(initialState = {}, history) {
       cancelSagas(store);
 
       import('./sagas').then((sagasModule) => {
-        sagasModule.startSagas(sagaMiddleware);
+        sagasModule.startSagas(store);
       });
     });
   }
